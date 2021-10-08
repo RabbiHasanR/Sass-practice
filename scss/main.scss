@@ -1,0 +1,29 @@
+// Sass variable declaration and assign
+
+$primary-color: #272727;
+$accent-color: #ff652f;
+$text-color: #fff;
+
+// Create Map Varibale
+$fonts-weight: (
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+);
+
+body {
+  // Access Sass Variable
+  background-color: $primary-color;
+  color: $text-color;
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+  
+  // Sass Nesting
+  p {
+    //   Access Map key value
+    font-weight: map-get($map: $fonts-weight, $key: "bold");
+  }
+}
