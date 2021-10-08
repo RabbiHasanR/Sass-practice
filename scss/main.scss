@@ -2,6 +2,37 @@
 @import "./resets";
 @import "./variables";
 
+// Using Function in Sass. function can use compute value and return value
+@function weight($weight-name) {
+  //   Access Map key value
+  @return map-get($map: $fonts-weight, $key: $weight-name);
+}
+
+// Sass Mixin define with perameter . mixin can use define style and not compute and return any value
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+// can asign default value in perameter in mixin
+@mixin theme($light-theme:true) {
+    // Use condition in sass
+    @if $light-theme {
+        background-color: lighten($color: $primary-color, $amount: 100%);
+        color: darken($color: $text-color, $amount: 100%);
+    }
+}
+
+
+//Use mixin for responsive media query and content
+@mixin mobile {
+    @media (max-width: $mobile){
+        @content;
+    }
+}
+
 body {
   // Access Sass Variable
   background-color: $primary-color;
@@ -9,6 +40,8 @@ body {
 }
 
 .main {
+  // InClude Mixin and pass perameter
+  @include flexCenter(row);
   width: 80%;
   margin: 0 auto;
 
@@ -21,8 +54,8 @@ body {
   // & means parent name so &__paragraph === .main__paragraph but
   //   for css we use #{&}__paragraph === .main .main__paragraph
   #{&}__paragraph {
-    //   Access Map key value
-    font-weight: map-get($map: $fonts-weight, $key: "bold");
+    // Call function and return value
+    font-weight: weight(bold);
 
     // Hover With scss
     &:hover {
@@ -30,4 +63,19 @@ body {
       color: pink;
     }
   }
+
+  //call mixin and write content
+  @include mobile(){
+      flex-direction: column;
+  }
 }
+
+.light{
+    // Call mixin and pass perameter value
+    @include theme($light-theme: true);
+}
+
+// .dark{
+//     // Call mixin and pass perameter value
+//     @include theme($light-theme: false);
+// }
