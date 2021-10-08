@@ -1,15 +1,6 @@
-// Sass variable declaration and assign
-
-$primary-color: #272727;
-$accent-color: #ff652f;
-$text-color: #fff;
-
-// Create Map Varibale
-$fonts-weight: (
-  "regular": 400,
-  "medium": 500,
-  "bold": 700,
-);
+// For main scss file for learg project we can modularize scss file and import it
+@import "./resets";
+@import "./variables";
 
 body {
   // Access Sass Variable
@@ -20,10 +11,23 @@ body {
 .main {
   width: 80%;
   margin: 0 auto;
-  
+
   // Sass Nesting
-  p {
+
+  //   The & is an extremely useful feature in Sass (and Less).
+  //   It’s used when nesting. It can be a nice time-saver when
+  //   you know how to use it, or a bit of a time-waster when you’re
+  //   struggling and could have written the same code in regular CSS.
+  // & means parent name so &__paragraph === .main__paragraph but
+  //   for css we use #{&}__paragraph === .main .main__paragraph
+  #{&}__paragraph {
     //   Access Map key value
     font-weight: map-get($map: $fonts-weight, $key: "bold");
+
+    // Hover With scss
+    &:hover {
+      cursor: pointer;
+      color: pink;
+    }
   }
 }

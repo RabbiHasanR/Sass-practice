@@ -1,3 +1,10 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #272727;
   color: #fff;
@@ -8,7 +15,12 @@ body {
   margin: 0 auto;
 }
 
-.main p {
+.main .main__paragraph {
   font-weight: 700;
+}
+
+.main .main__paragraph:hover {
+  cursor: pointer;
+  color: pink;
 }
 /*# sourceMappingURL=main.css.map */
